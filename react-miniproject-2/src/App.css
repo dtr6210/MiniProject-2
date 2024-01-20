@@ -1,13 +1,16 @@
 #root {
-  max-width: 1280px;
+  max-width: auto;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  background-color: rgb(199, 199, 165);
+  /* background-color: rgb(199, 199, 165); */
 }
 
 body {
   background-color: rgb(199, 199, 165);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .logo {

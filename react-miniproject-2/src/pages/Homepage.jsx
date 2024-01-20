@@ -1,7 +1,6 @@
-import "../src/Home.css";
-import Footer from "./components/Footer";
+import Footer from "../components/Footer";
 
-function Home() {
+function Homepage() {
   return (
     <div className="main-container">
       <div className="content-container">
@@ -49,7 +48,7 @@ function Home() {
 
             {/* Link to sign up page */}
             <p className="SignUp">
-              Don't have an account? <a href="signup.html">Sign up</a>
+              Don't have an account? <a href="signup">Sign up</a>
             </p>
           </form>
         </div>
@@ -60,4 +59,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Homepage;
