@@ -72,9 +72,10 @@ function MainFeedPage() {
       >
         {meals.map((meal) => (
           <RecipeCard
-            key={meal.idMeal}
-            title={meal.strMeal}
-            imageURL={meal.strMealThumb}
+          key={meal.idMeal}
+          id={meal.idMeal}
+          title={meal.strMeal}
+          imageURL={meal.strMealThumb}
           />
         ))}
       </div>

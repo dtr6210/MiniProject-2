@@ -3,16 +3,23 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function RecipeCard({
+  id,
   title,
-  imageURL = "https://placehold.co/320X320",
+  imageURL,
   altText = "placeholder",
-  instructions,
-  children,
 }) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/meal/${id}`); // Navigate to the meal detail page
+  };
+
   return (
     <Card
+      onClick={handleClick}
       sx={{
         maxWidth: 275,
         transition: "transform 0.3s",
@@ -30,13 +37,11 @@ export default function RecipeCard({
           <Typography gutterBottom variant="h5" component="div">
             {title}
           </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Click on me to see the recipe details!
+          </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-      </CardActions>
     </Card>
   );
 }
