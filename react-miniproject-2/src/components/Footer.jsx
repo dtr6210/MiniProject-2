@@ -1,6 +1,6 @@
 function Footer() {
     return (
-      <footer>&copy; 2024 EatAndGreet.com. All rights reserved.</footer>
+      <footer>&copy; 2024 EatAndGreet.com.</footer>
     );
   }
   
