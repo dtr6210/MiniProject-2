@@ -1,4 +1,7 @@
 import * as React from "react";
+import { useContext, useState } from "react";
+import { useUserContext } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -15,14 +18,37 @@ import Footer from "../components/Footer";
 import Logo1 from "/Logo1.png";
 
 export default function SignInSide() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  // state for manager user input and login
+  const [userEmail, setUserEmail] = useState("");
+  const [userPassword, setUserPassword] = useState("");
+  const [submitResult, setSubmitResult] = useState("");
+
+  const { currentUser, handleUpdateUser } = useUserContext();
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    //validating user input
+    if (userPassword.length < 5) {
+      setSubmitResult("Password must be at least 5 characters long");
+    } else if (userPassword === userEmail) {
+      setSubmitResult("Password cannot be the same as email");
+    } else {
+      setSubmitResult("Successful login");
+      handleUpdateUser({ email: userEmail });
+      navigate("/main"); //navigate to main page after succesful login
+    }
   };
+
+  if (currentUser.email) {
+    return (
+      <div>
+        <p>Welcome {currentUser.email}!</p>
+        <button onClick={() => handleUpdateUser({})}>Log Out</button>
+      </div>
+    );
+  }
 
   return (
     <Grid container component="main" sx={{ height: "100vh", mt: 8 }}>
@@ -89,6 +115,8 @@ export default function SignInSide() {
               name="email"
               autoComplete="email"
               autoFocus
+              value={userEmail}
+              onChange={(e) => setUserEmail(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -99,6 +127,8 @@ export default function SignInSide() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={userPassword}
+              onChange={(e) => setUserPassword(e.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -112,6 +142,7 @@ export default function SignInSide() {
             >
               Sign In
             </Button>
+            {submitResult && <p>{submitResult}</p>}
             <Grid container>
               <Grid item>
                 <Link href="signup" variant="body2">
@@ -119,8 +150,8 @@ export default function SignInSide() {
                 </Link>
               </Grid>
             </Grid>
-            <Box sx={{mt: 8}}>
-            <Footer />
+            <Box sx={{ mt: 8 }}>
+              <Footer />
             </Box>
           </Box>
         </Box>
