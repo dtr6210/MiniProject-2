@@ -5,6 +5,7 @@ import SignupPage from "../pages/SignupPage";
 import MainFeedPage from "../pages/MainFeedPage";
 import MealDetailPage from "../pages/MealDetails";
 
+//component to define all application routes
 function AppRoutes(props) {
   return (
     <Routes>
