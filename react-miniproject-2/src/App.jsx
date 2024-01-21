@@ -4,14 +4,17 @@ import "./App.css";
 import Home from "./pages/Homepage";
 import AppRoutes from "./routes/AppRoutes";
 import NavBar from "./components/NavBar";
+import { UserProvider } from "./context/UserContext";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
-    <NavBar />
-      <AppRoutes />
+      <UserProvider>
+        <NavBar />
+        <AppRoutes />
+      </UserProvider>
     </>
   );
 }
