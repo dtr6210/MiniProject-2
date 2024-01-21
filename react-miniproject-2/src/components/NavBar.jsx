@@ -46,8 +46,8 @@ function NavBar() {
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+            component={Link}
+            to="/"
             sx={{
               mr: 10,
               display: { xs: "none", md: "flex" },
@@ -126,7 +126,7 @@ function NavBar() {
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 <Link
-                  to={page === "Main" ? "/main" : `/${page.toLowerCase()}`}
+                  to={`/${page.toLowerCase()}`}
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
                   <Typography textAlign="center">{page}</Typography>
